@@ -1,7 +1,8 @@
 <template>
 	<div class="favorite">
 		<div class="container">
-			<div v-if="quotesStore.favorites.length">
+			<loader v-if="quotesStore.loader" />
+			<div v-else-if="quotesStore.favorites.length">
 				<Quote v-for="quote in quotesStore.favorites" :key="quote._id" :quote="quote"
 					@toggle-favorite="quotesStore.toggleFavorite(quote)" />
 			</div>
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 import { useQuotesStore } from "../stores/quotesStore";
 import CustomButton from "@/components/ui/CustomButton.vue";
+import Loader from "@/components/ui/Loader.vue";
 
 // @ts-ignore
 import Quote from "@/components/Quote.vue";

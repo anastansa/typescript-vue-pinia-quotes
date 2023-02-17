@@ -1,8 +1,11 @@
 <template>
 	<div class="random">
 		<div class="container">
-			<Quote :quote="quotesStore.randomQuote" />
-			<CustomButton @click="quotesStore.loadRandomQuote"> One more quote </CustomButton>
+			<loader v-if="quotesStore.loader" />
+			<div v-else>
+				<Quote :quote="quotesStore.randomQuote" />
+				<CustomButton @click="quotesStore.loadRandomQuote"> One more quote </CustomButton>
+			</div>
 		</div>
 	</div>
 </template>
@@ -13,6 +16,7 @@ import { useQuotesStore } from "../stores/quotesStore";
 import Quote from "@/components/Quote.vue";
 import { onMounted } from 'vue'
 import CustomButton from "@/components/ui/CustomButton.vue";
+import Loader from "@/components/ui/Loader.vue";
 
 const quotesStore = useQuotesStore();
 onMounted((): void => {
