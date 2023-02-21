@@ -33,6 +33,7 @@ const toggleFavorite = (quote: object): void => {
 
 <style lang="scss" scoped>
 .quote {
+	width: 100%;
 	min-height: 145px;
 	padding: 20px;
 	margin-bottom: 30px;

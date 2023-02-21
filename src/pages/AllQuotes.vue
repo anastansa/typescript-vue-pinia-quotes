@@ -3,8 +3,18 @@
 		<div class="container">
 			<loader v-if="quotesStore.loader" />
 			<div v-else>
+				<div v-if="quotesStore.favorites.length" class="favorite">
+					<div class="favorite__title">
+						Favorite quotes (count: {{ quotesStore.favorites.length }}) </div>
+					<Quote v-for="quote in quotesStore.favorites" :key="quote._id" :quote="quote"
+						@toggle-favorite="quotesStore.toggleFavorite(quote)" />
+				</div>
+				<div class="all__title"> All quotes:</div>
 				<Quote v-for="quote in quotesStore.quotes" :key="quote._id" :quote="quote"
 					@toggle-favorite="quotesStore.toggleFavorite(quote)" />
+				<div class="all__btn">
+					<custom-button @click="quotesStore.loadMoreQuotes"> Load more </custom-button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -12,8 +22,9 @@
 
 <script setup lang="ts">
 import { useQuotesStore } from "../stores/quotesStore";
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import Loader from "@/components/ui/Loader.vue";
+import CustomButton from "@/components/ui/CustomButton.vue";
 // @ts-ignore
 import Quote from "@/components/Quote.vue";
 
@@ -25,13 +36,31 @@ onMounted((): void => {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .all {
-	margin: 0 auto;
+	margin: 0 auto 20px auto;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	.favorite {
+    margin-bottom: 100px;
+
+		.favorite__title {
+			font-size: 18px; 
+			font-weight: 500; 
+			margin-bottom: 10px;
+		}
+	}
+	.all__title {
+		font-size: 18px; 
+	  font-weight: 500; 
+  	margin-bottom: 10px;
+	}
+	.all__btn {
+		text-align: center;
+	}
 }
 </style>

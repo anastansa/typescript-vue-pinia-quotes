@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
 import type { Quote } from "@/types/Quote";
@@ -6,20 +6,40 @@ import type { Quote } from "@/types/Quote";
 export const useQuotesStore = defineStore("quotesStore", () => {
 
 	const quotes = ref([] as Quote[])
-	const randomQuote = ref({} as Quote)
 	const favorites = ref([] as Quote[])
+	let randomQuote = ref({} as Quote)
 	let loader = ref(false)
+	let pageNumber = ref(1)
 
 	const loadAllQuotes = async () => {
 		loader.value = true
 		try {
-			const response = await axios.get('https://api.quotable.io/quotes')
+			const response = await axios.get('https://api.quotable.io/quotes', {
+				params: {
+					page: pageNumber.value
+				}
+			})
 			quotes.value = response.data.results
 		} catch (e) {
 			console.log(e)
 		} finally {
 			loader.value = false
 		}
+	}
+
+	const loadMoreQuotes = async () => {
+		pageNumber.value += 1
+		try {
+			const response = await axios.get('https://api.quotable.io/quotes', {
+				params: {
+					page: pageNumber.value
+				}
+			})
+			quotes.value = [...quotes.value, ...response.data.results]
+			console.log(quotes.value)
+		} catch (e) {
+			console.log(e)
+		} 
 	}
 
 	const loadRandomQuote = async () => {
@@ -50,8 +70,10 @@ export const useQuotesStore = defineStore("quotesStore", () => {
 		favorites,
 		randomQuote,
 		loader,
+		pageNumber,
 		loadAllQuotes,
 		loadRandomQuote,
+		loadMoreQuotes,
 		toggleFavorite
 	};
 });

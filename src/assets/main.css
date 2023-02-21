@@ -7,11 +7,24 @@ a,
 }
 
 .container {
-	width: 700px;
+	width: 100%;
+	padding: 0 15px;
 }
 
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 7%, 75%, 0.2);
   }
+}
+
+@media(min-width: 1200px) {
+	.container {
+		max-width: 800px;
+	}
+}
+
+@media(min-width: 1500px) {
+	.container {
+		max-width: 1000px;
+	}
 }

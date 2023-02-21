@@ -9,9 +9,9 @@ const router = createRouter({
 			component: () => import("../pages/AllQuotes.vue"),
 		},
     {
-      path: "/favorite",
-      name: "favorite",
-			component: () => import("../pages/FavoriteQuotes.vue"),
+      path: "/search",
+      name: "search",
+			component: () => import("../pages/SearchQuotes.vue"),
     },
 		{
 			path: "/random",
