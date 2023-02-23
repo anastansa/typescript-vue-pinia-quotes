@@ -1,16 +1,18 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   // "include": ["env.d.ts", "src/**/*.vue"],
-	// "isolatedModules": false,
+	"isolatedModules": false,
 	// "noUnusedLocals": false,
-	// "noUnusedParameters": false,
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-
+	"esModuleInterop": true,
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"./src/*"
+			]
+		},
+		"lib": [ "es6", "dom" ]
+	},
 	"strict": true,
   "references": [
     {

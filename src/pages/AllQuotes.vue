@@ -24,9 +24,8 @@
 import { useQuotesStore } from "../stores/quotesStore";
 import { onMounted, ref } from 'vue'
 import Loader from "@/components/ui/Loader.vue";
-import CustomButton from "@/components/ui/CustomButton.vue";
-// @ts-ignore
 import Quote from "@/components/Quote.vue";
+import CustomButton from "@/components/ui/CustomButton.vue";
 
 const quotesStore = useQuotesStore();
 

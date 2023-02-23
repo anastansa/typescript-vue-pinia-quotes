@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from "vue-router";
       <nav>
         <RouterLink to="/">Quotes</RouterLink>
 				<RouterLink to="/random">Random</RouterLink>
-				<RouterLink to="/search">Search</RouterLink>
+				<RouterLink to="/tags">Tags</RouterLink>
       </nav>
     </div>
   </header>
