@@ -19,7 +19,7 @@ const props = defineProps({
 	quote: {
 		type: Object,
 		required: true,
-		default: () => { }
+		default: () => {}
 	}
 })
 
@@ -41,13 +41,11 @@ const toggleFavorite = (quote: object): void => {
 
 	.like {
 		text-align: end;
-
 		img {
 			width: 20px;
 			height: 20px;
 		}
 	}
-
 	.quote__content {
 		margin-bottom: 10px;
 		font-size: 20px;

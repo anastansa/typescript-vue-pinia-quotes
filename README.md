@@ -1,14 +1,14 @@
-# typescript-vue-pinia-quotes
+## typescript-vue-pinia-quotes
 
 This project allows to look up quotes for daily motivation, add them to favorites, search for random quotes for inspiration.
 
 ### Technologies used:
-Typescript
-Vue 3 Composition API
-Pinia as state management tool 
-Quotable API
+- Typescript
+- Vue 3 Composition API
+- Pinia as state management tool 
+- Quotable API
 
-## Project Setup
+### Project Setup
 
 ```sh
 npm install
