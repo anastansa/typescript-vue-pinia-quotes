@@ -1,7 +1,7 @@
 <template>
 	<select v-model="props.modelValue" @change="changeOption">
 		<option disabled value=""> </option>
-		<option v-for="option in props.options" :key="option.value" :value="option.value">
+		<option v-for="option in props.options" :key="option._id" :value="option.name">
 			{{ option.name }}
 		</option>
 	</select>

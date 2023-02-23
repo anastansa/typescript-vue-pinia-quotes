@@ -3,7 +3,7 @@
 		<div class="container">
 			<loader v-if="quotesStore.loader" />
 			<div v-else>
-				<Quote :quote="quotesStore.randomQuote"/>
+				<Quote :quote="quotesStore.randomQuote" @toggle-favorite="quotesStore.toggleFavorite(quotesStore.randomQuote)" />
 				<CustomButton @click="quotesStore.loadRandomQuote"> One more quote </CustomButton>
 			</div>
 		</div>
