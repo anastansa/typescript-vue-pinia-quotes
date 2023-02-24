@@ -26,7 +26,8 @@ import { useQuotesStore } from "../stores/quotesStore";
 const tagsStore = useTagsStore();
 const quotesStore = useQuotesStore();
 
-const selectedTag = ref('')
+let tagStorage = window.sessionStorage.getItem('selectedTag')
+let selectedTag = ref(tagStorage ? tagStorage : '')
 
 onMounted((): void => {
 	tagsStore.loadTags()
@@ -34,6 +35,7 @@ onMounted((): void => {
 
 watch(selectedTag, (newValue) => {
 	tagsStore.sortByTag(selectedTag.value)
+	window.sessionStorage.setItem('selectedTag', selectedTag.value);
 })
 
 </script>

@@ -12,7 +12,6 @@
 
 <script setup lang="ts">
 import { useQuotesStore } from "../stores/quotesStore";
-// @ts-ignore
 import Quote from "@/components/Quote.vue";
 import { onMounted } from 'vue'
 import CustomButton from "@/components/ui/CustomButton.vue";

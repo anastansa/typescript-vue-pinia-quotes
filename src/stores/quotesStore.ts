@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
 import type { Quote } from "@/types/Quote";
@@ -10,6 +10,11 @@ export const useQuotesStore = defineStore("quotesStore", () => {
 	let randomQuote = ref({} as Quote)
 	let loader = ref(false)
 	let pageNumber = ref(1)
+
+	const favStorage = localStorage.getItem('favStorage');
+	if (favStorage) {
+		favorites.value = JSON.parse(favStorage)._value;
+	}
 
 	const loadAllQuotes = async () => {
 		loader.value = true
@@ -64,6 +69,14 @@ export const useQuotesStore = defineStore("quotesStore", () => {
 			quote.isFavorite = true
 		}
 	}
+
+	watch(
+		() => favorites,
+		(newValue) => {
+			localStorage.setItem('favStorage', JSON.stringify(newValue));
+		},
+		{ deep: true }
+	);
 
 	return {
 		quotes,
