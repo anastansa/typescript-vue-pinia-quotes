@@ -17,7 +17,7 @@ import { useFavoritesStore } from "../stores/favoritesStore";
 import Quote from "@/components/Quote.vue";
 import { onMounted } from 'vue'
 import CustomButton from "@/components/ui/CustomButton.vue";
-import Loader from "@/components/ui/Loader.vue";
+import Loader from "@/components/ui/MyLoader.vue";
 
 const randomStore = useRandomStore();
 const favoritesStore = useFavoritesStore();

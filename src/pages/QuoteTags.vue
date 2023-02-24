@@ -19,8 +19,8 @@ import { ref, watch, onMounted } from "vue";
 import { useTagsStore } from "../stores/tagsStore";
 import { useFavoritesStore } from "../stores/favoritesStore";
 import Quote from "@/components/Quote.vue";
-import Select from "@/components/ui/Select.vue";
-import Loader from "@/components/ui/Loader.vue";
+import Select from "@/components/ui/MySelect.vue";
+import Loader from "@/components/ui/MyLoader.vue";
 
 
 const tagsStore = useTagsStore();

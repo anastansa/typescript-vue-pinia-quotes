@@ -2,7 +2,7 @@
 	<div class="search">
 		<div class="container">
 			<form @submit.prevent="searchStore.getQuotes(searchQuote)" class="search__form">
-				<input type="text" class="search__input" placeholder="type here" v-model="searchQuote" />
+				<Input type="text" v-model="searchQuote" placeholder="type here"/>
 				<CustomButton @click="searchStore.getQuotes(searchQuote)" class="search__btn">
 					Search quotes
 				</CustomButton>
@@ -25,9 +25,10 @@
 import { useSearchStore } from "../stores/searchStore";
 import { useFavoritesStore } from "../stores/favoritesStore";
 import { ref, watch, onMounted } from 'vue'
-import Loader from "@/components/ui/Loader.vue";
+import Loader from "@/components/ui/MyLoader.vue";
 import Quote from "@/components/Quote.vue";
 import CustomButton from "@/components/ui/CustomButton.vue";
+import Input from "@/components/ui/MyInput.vue";
 
 const searchStore = useSearchStore();
 const favoritesStore = useFavoritesStore();
@@ -56,16 +57,6 @@ watch(searchQuote, (newValue) => {
 	align-items: center;
 
 	.search__form {
-		.search__input {
-			width: 100%;
-			height: 40px;
-			padding: 0 10px;
-			margin-bottom: 20px;
-			border: 1px solid #c1c0c0;
-			border-radius: 8px;
-			font-size: 18px;
-		}
-
 		.search__btn {
 			margin-bottom: 30px;
 		}

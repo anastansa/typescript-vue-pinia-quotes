@@ -24,7 +24,7 @@
 import { useQuotesStore } from "../stores/quotesStore";
 import { useFavoritesStore } from "../stores/favoritesStore";
 import { onMounted, ref } from 'vue'
-import Loader from "@/components/ui/Loader.vue";
+import Loader from "@/components/ui/MyLoader.vue";
 import Quote from "@/components/Quote.vue";
 import CustomButton from "@/components/ui/CustomButton.vue";
 
