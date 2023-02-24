@@ -18,6 +18,11 @@ const router = createRouter({
 			name: "random",
 			component: () => import("../pages/RandomQuote.vue"),
 		},
+		{
+			path: "/search",
+			name: "search",
+			component: () => import("../pages/SearchQuote.vue"),
+		},
   ],
 });
 
