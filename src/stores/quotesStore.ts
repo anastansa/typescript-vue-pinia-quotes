@@ -6,15 +6,8 @@ import type { Quote } from "@/types/Quote";
 export const useQuotesStore = defineStore("quotesStore", () => {
 
 	const quotes = ref([] as Quote[])
-	const favorites = ref([] as Quote[])
-	let randomQuote = ref({} as Quote)
-	let loader = ref(false)
-	let pageNumber = ref(1)
-
-	const favStorage = localStorage.getItem('favStorage');
-	if (favStorage) {
-		favorites.value = JSON.parse(favStorage)._value;
-	}
+	const loader = ref(false)
+	const pageNumber = ref(1)
 
 	const loadAllQuotes = async () => {
 		loader.value = true
@@ -47,46 +40,11 @@ export const useQuotesStore = defineStore("quotesStore", () => {
 		} 
 	}
 
-	const loadRandomQuote = async () => {
-		loader.value = true
-		try {
-			const response = await axios.get('https://api.quotable.io/random')
-			randomQuote.value = response.data
-		} catch (e) {
-			console.log(e)
-		} finally {
-			loader.value = false
-		}
-	}
-
-	const toggleFavorite = (quote: Quote): void => {
-		const found = favorites.value.find(el => el._id === quote._id)
-		if (found) {
-			favorites.value = favorites.value.filter(el => el._id !== quote._id)
-			quote.isFavorite = false
-		} else {
-			favorites.value.push(quote)
-			quote.isFavorite = true
-		}
-	}
-
-	watch(
-		() => favorites,
-		(newValue) => {
-			localStorage.setItem('favStorage', JSON.stringify(newValue));
-		},
-		{ deep: true }
-	);
-
 	return {
 		quotes,
-		favorites,
-		randomQuote,
 		loader,
 		pageNumber,
 		loadAllQuotes,
-		loadRandomQuote,
 		loadMoreQuotes,
-		toggleFavorite
 	};
 });

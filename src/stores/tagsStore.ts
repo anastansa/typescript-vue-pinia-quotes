@@ -8,7 +8,7 @@ export const useTagsStore = defineStore("tagsStore", () => {
 
 	const tags = ref([] as Tag[])
 	const sortedByTag = ref([] as Quote[]);
-	let loader = ref(false)
+	const loader = ref(false)
 
 	const loadTags = async () => {
 		loader.value = true

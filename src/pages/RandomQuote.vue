@@ -1,25 +1,29 @@
 <template>
 	<div class="random">
 		<div class="container">
-			<loader v-if="quotesStore.loader" />
+			<loader v-if="randomStore.loader" />
 			<div v-else>
-				<Quote :quote="quotesStore.randomQuote" @toggle-favorite="quotesStore.toggleFavorite(quotesStore.randomQuote)" />
-				<CustomButton @click="quotesStore.loadRandomQuote"> One more quote </CustomButton>
+				<Quote :quote="randomStore.randomQuote"
+					@toggle-favorite="favoritesStore.toggleFavorite(randomStore.randomQuote)" />
+				<CustomButton @click="randomStore.loadRandomQuote"> One more quote </CustomButton>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { useQuotesStore } from "../stores/quotesStore";
+import { useRandomStore } from "../stores/randomStore";
+import { useFavoritesStore } from "../stores/favoritesStore";
 import Quote from "@/components/Quote.vue";
 import { onMounted } from 'vue'
 import CustomButton from "@/components/ui/CustomButton.vue";
 import Loader from "@/components/ui/Loader.vue";
 
-const quotesStore = useQuotesStore();
+const randomStore = useRandomStore();
+const favoritesStore = useFavoritesStore();
+
 onMounted((): void => {
-	quotesStore.loadRandomQuote()
+	randomStore.loadRandomQuote()
 })
 
 </script>

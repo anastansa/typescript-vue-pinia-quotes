@@ -8,34 +8,35 @@
 					<Select v-model="selectedTag" :options="tagsStore.tags" id="tags" />
 				</div>
 				<Quote v-for="quote in tagsStore.sortedByTag" key="quote._id" :quote="quote"
-					@toggle-favorite="quotesStore.toggleFavorite(quote)" />
+					@toggle-favorite="favoritesStore.toggleFavorite(quote)" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useTagsStore } from "../stores/tagsStore";
-import { onMounted } from 'vue'
+import { useFavoritesStore } from "../stores/favoritesStore";
 import Quote from "@/components/Quote.vue";
 import Select from "@/components/ui/Select.vue";
 import Loader from "@/components/ui/Loader.vue";
-import { useQuotesStore } from "../stores/quotesStore";
+
 
 const tagsStore = useTagsStore();
-const quotesStore = useQuotesStore();
+const favoritesStore = useFavoritesStore();
 
-let tagStorage = window.sessionStorage.getItem('selectedTag')
-let selectedTag = ref(tagStorage ? tagStorage : '')
+const tagStorage = sessionStorage.getItem('selectedTag')
+const selectedTag = ref(tagStorage ? tagStorage : '')
 
 onMounted((): void => {
 	tagsStore.loadTags()
+	tagsStore.sortByTag(selectedTag.value)
 })
 
 watch(selectedTag, (newValue) => {
 	tagsStore.sortByTag(selectedTag.value)
-	window.sessionStorage.setItem('selectedTag', selectedTag.value);
+	sessionStorage.setItem('selectedTag', selectedTag.value);
 })
 
 </script>
