@@ -9,6 +9,8 @@
 
 <script setup lang="ts">
 
+import type { Tag } from '@/types/Tag';
+
 const props = defineProps({
 	modelValue: {
 		type: String,
@@ -16,7 +18,7 @@ const props = defineProps({
 		default: () => ''
 	},
 	options: {
-		type: Array,
+		type: Array<Tag>,
 		required: true,
 		default: () => []
 	}
